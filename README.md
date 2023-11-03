@@ -1,4 +1,4 @@
-# Installation instructions for OpenFOAM-11 on OpenSUSE leap 15.5
+# Installation instructions for OpenFOAM-11 on OpenSUSE Leap 15.5
 
 ## System requirements
 
