@@ -94,6 +94,7 @@ mkdir -p $OPENFOAM_ROOT
 cd $OPENFOAM_ROOT
 git clone https://github.com/OpenFOAM/OpenFOAM-dev.git -b version-11
 git clone https://github.com/OpenFOAM/ThirdParty-dev.git -b version-11
+source $OPENFOAM_ROOT/OpenFOAM-dev/etc/bashrc
 ```
 
 Compile third party software
