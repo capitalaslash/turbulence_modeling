@@ -109,6 +109,19 @@ cd $OPENFOAM_ROOT/OpenFOAM-dev
 ./Allwmake -j
 ```
 
+### Test installation
+
+Copy and run the `cavity` tutorial
+```bash
+mkdir ~/sandbox
+cd ~/sandbox
+cp -r $FOAM_TUTORIALS/incompressibleFluid/cavity .
+cd cavity
+blockMesh
+foamRun
+```
+
+
 ### Environment setup for later usage
 
 ```bash
