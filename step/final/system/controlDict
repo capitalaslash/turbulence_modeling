@@ -46,5 +46,21 @@ timePrecision   6;
 
 runTimeModifiable true;
 
+functions
+{
+  #includeFunc yPlus;
+  #includeFunc residuals;
+
+  // yPlus1
+  // {
+  //   type yPlus;
+  //   libs (fieldFunctionObjects);
+  //   timeStart 0;
+  //   executeControl timeStep;
+  //   writeControl timestep;
+  // }
+}
+
 
 // ************************************************************************* //
+
