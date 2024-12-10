@@ -1,4 +1,4 @@
-IMAGE_NAME = turbmodel_opensuseleap155
+IMAGE_NAME = turbmodel_opensuseleap156
 
 build:
 	docker build -t $(IMAGE_NAME) .
