@@ -1,6 +1,19 @@
-# Installation instructions for OpenFOAM-11 on OpenSUSE Leap 15.6
+# Support files for Turbulence modeling course at unibo
 
-## System requirements
+Content:
+
+* OpenFOAM installation instuctions
+
+* `docker` container with OpenFOAM
+
+* OpenFOAM cases with templates
+
+* TODO: merge adv1d python code
+
+
+## Installation instructions for OpenFOAM-12 on OpenSUSE Leap 15.6
+
+### System requirements
 
 Install some required packages
 ```bash
@@ -29,9 +42,10 @@ sudo ln -s /usr/bin/g++-13 /usr/local/bin/g++
 sudo ln -s /usr/bin/gfortran-13 /usr/local/bin/gfortran
 ```
 
-## Install `openmpi` via `spack`
 
-### Install `spack`
+### Install `openmpi` via `spack`
+
+#### Install `spack`
 
 Set `spack` installation folder
 ```bash
@@ -49,7 +63,8 @@ set environment to operate with `spack`
 ```bash
 source $SPACK_ROOT/share/spack/setup-env.sh
 ```
-### Install `openmpi`
+
+#### Install `openmpi`
 
 install `openmpi` via spack
 ```bash
@@ -61,7 +76,8 @@ enable the `openmpi` installation
 spack load openmpi@4.1.7
 ```
 
-### Environment setup for later usage
+
+#### Environment setup for later usage
 
 ```bash
 export SPACK_ROOT=~/platform_tm/spack
@@ -69,7 +85,8 @@ source $SPACK_ROOT/share/spack/setup-env.sh
 spack load openmpi@4.1.7
 ```
 
-### Automatic environment setup
+
+#### Automatic environment setup
 
 Run this **once**
 
@@ -82,7 +99,8 @@ spack load openmpi@4.1.7
 EOF
 ```
 
-## Install `OpenFOAM-12`
+
+### Install `OpenFOAM-12`
 
 Set the installation location
 ```bash
@@ -117,7 +135,8 @@ cd $OPENFOAM_ROOT/OpenFOAM-dev
 ./Allwmake -j
 ```
 
-### Test installation
+
+#### Test installation
 
 Copy and run the `cavity` tutorial
 ```bash
@@ -130,14 +149,15 @@ foamRun
 ```
 
 
-### Environment setup for later usage
+#### Environment setup for later usage
 
 ```bash
 export OPENFOAM_ROOT=~/platform_tm/openfoam
 source $OPENFOAM_ROOT/OpenFOAM-dev/etc/bashrc
 ```
 
-### Automatic environment setup
+
+#### Automatic environment setup
 
 Run this **once**
 ```bash
@@ -147,3 +167,4 @@ export OPENFOAM_ROOT=~/platform_tm/openfoam
 source $OPENFOAM_ROOT/OpenFOAM-dev/etc/bashrc
 EOF
 ```
+
