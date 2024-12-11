@@ -1,4 +1,7 @@
 [1-9]00/
 [1-2]?00/
 */constant/polyMesh/
+*/postProcessing/
 */0/uniform/
+*/*/wallShearStress
+*/*/yPlus
