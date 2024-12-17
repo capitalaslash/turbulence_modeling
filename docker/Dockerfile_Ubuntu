@@ -1,0 +1,77 @@
+FROM ubuntu:22.04
+
+# install packages
+# TODO: use package version? package=x.y.z
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && \
+    apt-get install -y \
+    bash \
+    bzip2 \
+    cmake \
+    flex \
+    gcc \
+    g++ \
+    git \
+    gzip \
+    libopenmpi-dev \
+    make \
+    openmpi-bin \
+    paraview \
+    patch \
+    tar \
+    vim \
+    wget \
+    xz-utils \
+    && apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN ln -sf /bin/bash /bin/sh
+
+# install spack
+ENV SPACK_ROOT=/opt/spack
+
+RUN mkdir -p $SPACK_ROOT && \
+    cd $SPACK_ROOT && \
+    git clone https://github.com/spack/spack.git . -b releases/v0.23 && \
+    mkdir -p $SPACK_ROOT/opt/spack
+
+# install openmpi
+RUN $SPACK_ROOT/bin/spack install openmpi@4.1.7
+
+ENV OPENFOAM_ROOT=/opt/openfoam
+
+# clone OpenFOAM.org
+RUN mkdir -p $OPENFOAM_ROOT && \
+    cd $OPENFOAM_ROOT && \
+    git clone https://github.com/OpenFOAM/OpenFOAM-dev.git -b version-12 && \
+    git clone https://github.com/OpenFOAM/ThirdParty-dev.git -b version-12
+
+# disable zoltan and paraview
+RUN mkdir -p $HOME/.OpenFOAM && \
+    echo "export ZOLTAN_TYPE=none" >> $HOME/.OpenFOAM/prefs.sh && \
+    echo "export ParaView_TYPE=none" >> $HOME/.OpenFOAM/prefs.sh
+
+# compile third parties
+RUN source $SPACK_ROOT/share/spack/setup-env.sh && \
+    spack load openmpi@4.1.7 && \
+    source $OPENFOAM_ROOT/OpenFOAM-dev/etc/bashrc && \
+    cd $OPENFOAM_ROOT/ThirdParty-dev && \
+    ./Allwmake -j
+
+# compile OpenFOAM
+RUN source $SPACK_ROOT/share/spack/setup-env.sh && \
+    spack load openmpi@4.1.7 && \
+    source $OPENFOAM_ROOT/OpenFOAM-dev/etc/bashrc && \
+    cd $OPENFOAM_ROOT/OpenFOAM-dev && \
+    ./Allwmake -j
+
+# cavity test
+RUN source $SPACK_ROOT/share/spack/setup-env.sh && \
+    spack load openmpi@4.1.7 && \
+    source $OPENFOAM_ROOT/OpenFOAM-dev/etc/bashrc && \
+    mkdir $HOME/sandbox && \
+    cd $HOME/sandbox && \
+    cp -r $FOAM_TUTORIALS/incompressibleFluid/cavity ./ && \
+    cd cavity && \
+    blockMesh && \
+    foamRun

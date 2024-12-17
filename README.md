@@ -1,4 +1,4 @@
-# Support files for Turbulence modeling course at unibo
+# Support files for Turbulence Modeling course at unibo
 
 Content:
 
@@ -11,9 +11,34 @@ Content:
 * TODO: merge adv1d python code
 
 
-## Installation instructions for OpenFOAM-12 on OpenSUSE Leap 15.6
+## Installation instructions for OpenFOAM-12
 
 ### System requirements
+
+#### Xubuntu 22.04
+
+```bash
+sudo apt install \
+    bash \
+    bzip2 \
+    cmake \
+    flex \
+    gcc \
+    g++ \
+    git \
+    gzip \
+    libopenmpi-dev \
+    make \
+    openmpi-bin \
+    paraview \
+    patch \
+    tar \
+    vim \
+    wget \
+    xz-utils
+```
+
+#### OpenSUSE-Leap 15.6
 
 Install some required packages
 ```bash
