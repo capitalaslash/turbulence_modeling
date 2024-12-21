@@ -62,6 +62,7 @@ line_data = mesh_slice.sample_over_line(
     pTop,
     resolution=1000,
 )
+print(f"ReTau:           {uTau * yMid / nu:.0f}")
 
 # compute yPlus
 yPlus = line_data["Distance"] * uTau / nu
