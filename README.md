@@ -51,6 +51,7 @@ sudo zypper install \
     gcc-fortran \
     git \
     gzip \
+    openmpi4-devel \
     paraview \
     patch \
     tar \
@@ -60,68 +61,28 @@ sudo zypper install \
     zlib-devel
 ```
 
-### Install `openmpi` via `spack`
 
-#### Install `spack`
+### Set up `openmpi`
 
-Set `spack` installation folder
+#### Xubuntu 22.04
+
+No additional operation required.
+
+#### OpenSUSE-Leap 15.6
+
+Select `openmpi` version
 ```bash
-export SPACK_ROOT=~/platform_tm/spack
+mpi-selector --set openmpi4
 ```
 
-clone `spack-0.23`
-```bash
-mkdir -p $SPACK_ROOT
-cd $SPACK_ROOT
-git clone https://github.com/spack/spack.git . -b releases/v0.23
-```
-
-set environment to operate with `spack`
-```bash
-source $SPACK_ROOT/share/spack/setup-env.sh
-```
-
-#### Install `openmpi`
-
-install `openmpi` via spack
-```bash
-spack install openmpi@4.1.7
-```
-
-enable the `openmpi` installation
-```bash
-spack load openmpi@4.1.7
-```
-
-
-#### Environment setup for later usage
-
-```bash
-export SPACK_ROOT=~/platform_tm/spack
-source $SPACK_ROOT/share/spack/setup-env.sh
-spack load openmpi@4.1.7
-```
-
-
-#### Automatic environment setup
-
-Run this **once**
-
-```bash
-cat <<EOF >> ~/.bashrc
-# setup spack and load openmpi
-export SPACK_ROOT=~/platform_tm/spack
-source \$SPACK_ROOT/share/spack/setup-env.sh
-spack load openmpi@4.1.7
-EOF
-```
+and relaunch shell.
 
 
 ### Install `OpenFOAM-12`
 
 Set the installation location
 ```bash
-export OPENFOAM_ROOT=~/platform_tm/openfoam
+export OPENFOAM_ROOT=~/software/openfoam
 ```
 
 Clone the source files
@@ -170,7 +131,7 @@ foamRun
 #### Environment setup for later usage
 
 ```bash
-export OPENFOAM_ROOT=~/platform_tm/openfoam
+export OPENFOAM_ROOT=~/software/openfoam
 source $OPENFOAM_ROOT/OpenFOAM-dev/etc/bashrc
 ```
 
@@ -181,7 +142,7 @@ Run this **once**
 ```bash
 cat <<EOF >> ~/.bashrc
 # configure openfoam
-export OPENFOAM_ROOT=~/platform_tm/openfoam
+export OPENFOAM_ROOT=~/software/openfoam
 source \$OPENFOAM_ROOT/OpenFOAM-dev/etc/bashrc
 EOF
 ```
