@@ -44,7 +44,7 @@ storage[:, 0] = u
 print(f"final time: {dt * nt}")
 print(f"CFL number: {c * dt / dx}")
 
-io = VTKIO1D(a, b, nx, "u")
+io = VTKIO1D("u", a, b, nx)
 io.print(u, 0, 0.0)
 
 # start time loop
