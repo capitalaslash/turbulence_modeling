@@ -75,7 +75,7 @@ Select `openmpi` version
 mpi-selector --set openmpi4
 ```
 
-and relaunch shell.
+It is required to **log out and log in again** to activate `mpi`.
 
 
 ### Install `OpenFOAM-12`
